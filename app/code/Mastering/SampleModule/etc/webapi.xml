@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © FSW, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<routes>
+    <route url="/V1/mastering" method="GET" >
+        <service class="Mastering\SampleModule\Api\ItemRepositoryInterface" method="getList" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>
