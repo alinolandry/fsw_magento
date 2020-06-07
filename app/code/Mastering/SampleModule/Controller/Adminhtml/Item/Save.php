@@ -27,7 +27,7 @@ class Save extends \Magento\Backend\App\Action
         ItemFactory $itemFactory
     )
     {
-        $this->$itemFactory = $itemFactory;
+        $this->itemFactory = $itemFactory;
         parent::__construct($context);
     }
 
@@ -37,7 +37,7 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $this->$itemFactory->create()->setData($this->getRequest()->getPostValue()['general'])->save();
+        $this->itemFactory->create()->setData($this->getRequest()->getPostValue()['general'])->save();
         if (!empty($this->resultRedirectFactory)) {
             return $this->resultRedirectFactory->create()->setPath('mastering/index/index');
         }
