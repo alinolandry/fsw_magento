@@ -31,6 +31,13 @@
             </argument>
         </arguments>
     </virtualType>
-    <preference for="Magento\Framework\Logger\Handler\Debug" type="Mastering\SampleModule\Model\DebugHandler"/>
+
+    <type name="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="debug" xsi:type="object">Mastering\SampleModule\Model\DebugHandler</item>
+            </argument>
+        </arguments>
+    </type>
 
 </config>
