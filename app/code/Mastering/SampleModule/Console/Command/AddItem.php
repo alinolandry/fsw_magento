@@ -19,12 +19,10 @@ class AddItem extends Command
     const INPUT_KEY_DESCRIPTION = 'description';
 
     private $itemFactory;
-    private $eventManager;
 
-    public function __construct(ItemFactory $itemFactory, ManagerInterface $eventManager)
+    public function __construct(ItemFactory $itemFactory)
     {
         $this->itemFactory = $itemFactory;
-        $this->eventManager = $eventManager;
         parent::__construct();
     }
 
@@ -51,7 +49,6 @@ class AddItem extends Command
         $item->setDescription($input->getArgument(self::INPUT_KEY_DESCRIPTION));
         $item->setIsObjectNew(true);
         $item->save();
-        $this->eventManager->dispatch('mastering_command',['object' => $item]);
 
         return Cli::RETURN_SUCCESS;
     }
