@@ -16,7 +16,7 @@ class Hello extends Template
 
     public function __construct(Template\Context $context, CollectionFactory $collectionFactory, array $data = [])
     {
-        // $this->$collectionFactory = $collectionFactory; method of training we use factory, so when i use it, it's no working for me I used objectManager
+        $this->collectionFactory = $collectionFactory;
         parent::__construct($context, $data);
     }
 
@@ -25,10 +25,10 @@ class Hello extends Template
      */
     public function getItems()
     {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $model = $objectManager->create('\Mastering\SampleModule\Model\Item')->getCollection();
-        // return $this->collectionFactory->create()->getItems();
-        return $model;
+       // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        //$model = $objectManager->create('\Mastering\SampleModule\Model\Item')->getCollection();
+         return $this->collectionFactory->create()->getItems();
+        //return $model;
     }
 
 }
