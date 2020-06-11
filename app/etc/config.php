@@ -109,6 +109,7 @@ return array (
     'Magento_Wishlist' => 1,
     'Mastering_SampleModule' => 1,
     'Shopial_Facebook' => 1,
+    'SimplifiedMagento_FirstModule' => 1,
     'Sivaschenko_LuckyOrder' => 1,
   ),
 );
