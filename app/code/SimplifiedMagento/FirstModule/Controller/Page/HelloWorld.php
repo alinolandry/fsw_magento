@@ -4,8 +4,10 @@ namespace SimplifiedMagento\FirstModule\Controller\Page;
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
-use SimplifiedMagento\FirstModule\NotMagento\PencilInterface;
+use Magento\Framework\ObjectManager\ObjectManager;
+use SimplifiedMagento\FirstModule\Api\PencilInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Vault\Api\PaymentTokenManagementInterface;
 
 
 /**
@@ -24,20 +26,21 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
      */
     protected $productRepository;
 
+    protected $paymentTokenManagement;
 
     /**
      * HelloWorld constructor.
      * @param Context $context
      * @param PencilInterface $pencilInterface
-     * @param ProductRepositoryInterface $productRepository
+     * @param PaymentTokenManagementInterface $paymentTokenManagement
      */
     public function __construct(Context $context,
                                 PencilInterface $pencilInterface,
-                                ProductRepositoryInterface $productRepository
+                                PaymentTokenManagementInterface $paymentTokenManagement
     )
     {
         $this->pencilInterface = $pencilInterface;
-        $this->productRepository = $productRepository;
+        $this->paymentTokenManagement = $paymentTokenManagement;
         parent::__construct($context);
     }
 
@@ -48,7 +51,10 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
     {
         // echo $this->pencilInterface->getPencilType();
 
-        echo get_class($this->productRepository);
+         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+         $book = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Book');
+         var_dump($book);
+        // echo get_class($this->productRepository);
     }
 
 

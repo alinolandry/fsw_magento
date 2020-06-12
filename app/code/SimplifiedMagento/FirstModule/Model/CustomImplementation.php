@@ -5,76 +5,71 @@ namespace SimplifiedMagento\FirstModule\Model;
 
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Sales\Api\Data\OrderPaymentInterface;
+use Magento\Vault\Api\Data\PaymentTokenInterface;
+use Magento\Vault\Api\PaymentTokenManagementInterface;
 
 
-class CustomImplementation implements ProductRepositoryInterface
+class CustomImplementation implements PaymentTokenManagementInterface
 {
 
 
-
     /**
-     * Create product
-     *
-     * @param \Magento\Catalog\Api\Data\ProductInterface $product
-     * @param bool $saveOptions
-     * @return \Magento\Catalog\Api\Data\ProductInterface
-     * @throws \Magento\Framework\Exception\InputException
-     * @throws \Magento\Framework\Exception\StateException
-     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     * @param int $customerId
+     * @return Data\PaymentTokenSearchResultsInterface
      */
-    public function save(\Magento\Catalog\Api\Data\ProductInterface $product, $saveOptions = false)
+    public function getListByCustomerId($customerId)
     {
-        // TODO: Implement save() method.
+        // TODO: Implement getListByCustomerId() method.
     }
 
     /**
-     * @param string $sku
-     * @param bool $editMode
-     * @param int|null $storeId
-     * @param bool $forceReload
-     * @return Data\ProductInterface
+     * @param int $paymentId
+     * @return PaymentTokenInterface
      */
-    public function get($sku, $editMode = false, $storeId = null, $forceReload = false)
+    public function getByPaymentId($paymentId)
     {
-        // TODO: Implement get() method.
+        // TODO: Implement getByPaymentId() method.
     }
 
     /**
-     * @param int $productId
-     * @param bool $editMode
-     * @param int|null $storeId
-     * @param bool $forceReload
-     * @return Data\ProductInterface
+     * @param string $token
+     * @param string $paymentMethodCode
+     * @param int $customerId
+     * @return PaymentTokenInterface|null
      */
-    public function getById($productId, $editMode = false, $storeId = null, $forceReload = false)
+    public function getByGatewayToken($token, $paymentMethodCode, $customerId)
     {
-        // TODO: Implement getById() method.
+        // TODO: Implement getByGatewayToken() method.
     }
 
     /**
-     * @param Data\ProductInterface $product
+     * @param string $hash
+     * @param int $customerId
+     * @return PaymentTokenInterface|null
+     */
+    public function getByPublicHash($hash, $customerId)
+    {
+        // TODO: Implement getByPublicHash() method.
+    }
+
+    /**
+     * @param PaymentTokenInterface $token
+     * @param OrderPaymentInterface $payment
      * @return bool
      */
-    public function delete(\Magento\Catalog\Api\Data\ProductInterface $product)
+    public function saveTokenWithPaymentLink(PaymentTokenInterface $token, OrderPaymentInterface $payment)
     {
-        // TODO: Implement delete() method.
+        // TODO: Implement saveTokenWithPaymentLink() method.
     }
 
     /**
-     * @param string $sku
+     * @param int $paymentTokenId
+     * @param int $orderPaymentId
      * @return bool
      */
-    public function deleteById($sku)
+    public function addLinkToOrderPayment($paymentTokenId, $orderPaymentId)
     {
-        // TODO: Implement deleteById() method.
-    }
-
-    /**
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return Data\ProductSearchResultsInterface
-     */
-    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria)
-    {
-        // TODO: Implement getList() method.
+        // TODO: Implement addLinkToOrderPayment() method.
     }
 }
