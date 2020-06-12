@@ -11,9 +11,11 @@ class Student
 
     private $age;
 
-    public function __construct($name = "Alex", $age = 26)
+    private $scores;
+    public function __construct($name = "Alex", $age = 26, array $scores = array('maths'=>92, 'programming'=>90))
     {
         $this->name = $name;
         $this->age = $age;
+        $this->score = $scores;
     }
 }
