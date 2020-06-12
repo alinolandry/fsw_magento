@@ -36,8 +36,21 @@
         </arguments>
     </type>
 
-    <type name="Magento\Catalog\Model\Product">
+    <!-- <type name="Magento\Catalog\Model\Product">
         <plugin name="productPlugins" type="\SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10" />
+    </type>
+    -->
+
+    <type name="SimplifiedMagento\FirstModule\Controller\Page\HelloWorld">
+        <plugin name="PluginsOnExecute" type="SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10" />
+    </type>
+
+    <type name="SimplifiedMagento\FirstModule\Controller\Page\HelloWorld">
+        <plugin name="PluginsOnExecute2" type="SimplifiedMagento\FirstModule\Plugin\PluginSolution2" sortOrder="20" />
+    </type>
+
+    <type name="SimplifiedMagento\FirstModule\Controller\Page\HelloWorld">
+        <plugin name="PluginsOnExecute3" type="SimplifiedMagento\FirstModule\Plugin\PluginSolution3" sortOrder="30" />
     </type>
 
     <type name="SimplifiedMagento\FirstModule\Model\Student">

@@ -70,12 +70,14 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
 
        // $pencil = $this->pencilFactory->create(array("name"=>"Alain", "school"=>"Montreal High School"));
 
-        $product = $this->productFactory->create()->load(1);
-        $product->setName("Samsung s20");
+       // $product = $this->productFactory->create()->load(1);
+       // $product->setName("Samsung s20");
 
-        $productName = $product->getName();
+      //  $productName = $product->getIdBySku("Tenis RAY Ban-Version 2");
         // var_dump($productName);
-        echo $productName;
+        // echo $productName;
+
+        echo "Main Function "."<br/>";
     }
 
 
