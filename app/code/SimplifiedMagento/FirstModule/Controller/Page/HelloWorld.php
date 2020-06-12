@@ -5,6 +5,7 @@ namespace SimplifiedMagento\FirstModule\Controller\Page;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use SimplifiedMagento\FirstModule\NotMagento\PencilInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 
 /**
@@ -13,11 +14,30 @@ use SimplifiedMagento\FirstModule\NotMagento\PencilInterface;
  */
 class HelloWorld extends \Magento\Framework\App\Action\Action
 {
+    /**
+     * @var PencilInterface
+     */
     protected $pencilInterface;
 
-    public function __construct(Context $context, PencilInterface $pencilInterface)
+    /**
+     * @var ProductRepositoryInterface
+     */
+    protected $productRepository;
+
+
+    /**
+     * HelloWorld constructor.
+     * @param Context $context
+     * @param PencilInterface $pencilInterface
+     * @param ProductRepositoryInterface $productRepository
+     */
+    public function __construct(Context $context,
+                                PencilInterface $pencilInterface,
+                                ProductRepositoryInterface $productRepository
+    )
     {
         $this->pencilInterface = $pencilInterface;
+        $this->productRepository = $productRepository;
         parent::__construct($context);
     }
 
@@ -26,7 +46,9 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        echo $this->pencilInterface->getPencilType();
+        // echo $this->pencilInterface->getPencilType();
+
+        echo get_class($this->productRepository);
     }
 
 
