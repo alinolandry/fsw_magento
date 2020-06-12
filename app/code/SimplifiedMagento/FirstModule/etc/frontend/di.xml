@@ -37,7 +37,7 @@
     </type>
 
     <type name="Magento\Catalog\Model\Product">
-        <plugin name="beforeSetName" type="\SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10" />
+        <plugin name="productPlugins" type="\SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10" />
     </type>
 
     <type name="SimplifiedMagento\FirstModule\Model\Student">
