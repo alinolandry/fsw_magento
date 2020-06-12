@@ -2,6 +2,7 @@
 
 namespace SimplifiedMagento\FirstModule\Controller\Page;
 
+use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\ObjectManager\ObjectManager;
@@ -9,6 +10,7 @@ use SimplifiedMagento\FirstModule\Api\PencilInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use SimplifiedMagento\FirstModule\Model\PencilFactory;
+
 
 
 /**
@@ -38,12 +40,16 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
     protected $pencilFactory;
 
 
+    protected $productFactory;
+
     public function __construct(Context $context,
+                                ProductFactory $productFactory,
                                 PencilFactory $pencilFactory,
                                 PencilInterface $pencilInterface,
                                 PaymentTokenManagementInterface $paymentTokenManagement
     )
     {
+        $this->productFactory = $productFactory;
         $this->pencilFactory = $pencilFactory;
         $this->pencilInterface = $pencilInterface;
         $this->paymentTokenManagement = $paymentTokenManagement;
@@ -62,8 +68,14 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
         // $pencil = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Pencil');
        // $book = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Book');
 
-        $pencil = $this->pencilFactory->create(array("name"=>"Alain", "school"=>"Montreal High School"));
-        var_dump($pencil);
+       // $pencil = $this->pencilFactory->create(array("name"=>"Alain", "school"=>"Montreal High School"));
+
+        $product = $this->productFactory->create()->load(1);
+        $product->setName("Samsung s20");
+
+        $productName = $product->getName();
+        // var_dump($productName);
+        echo $productName;
     }
 
 

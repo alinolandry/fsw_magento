@@ -36,6 +36,10 @@
         </arguments>
     </type>
 
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="beforeSetName" type="\SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10" />
+    </type>
+
     <type name="SimplifiedMagento\FirstModule\Model\Student">
         <arguments>
             <argument name="name" xsi:type="string">Bob</argument>
