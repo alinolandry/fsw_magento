@@ -8,6 +8,7 @@ use Magento\Framework\ObjectManager\ObjectManager;
 use SimplifiedMagento\FirstModule\Api\PencilInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
+use SimplifiedMagento\FirstModule\Model\PencilFactory;
 
 
 /**
@@ -26,19 +27,24 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
      */
     protected $productRepository;
 
+    /**
+     * @var PaymentTokenManagementInterface
+     */
     protected $paymentTokenManagement;
 
     /**
-     * HelloWorld constructor.
-     * @param Context $context
-     * @param PencilInterface $pencilInterface
-     * @param PaymentTokenManagementInterface $paymentTokenManagement
+     * @var PencilFactory
      */
+    protected $pencilFactory;
+
+
     public function __construct(Context $context,
+                                PencilFactory $pencilFactory,
                                 PencilInterface $pencilInterface,
                                 PaymentTokenManagementInterface $paymentTokenManagement
     )
     {
+        $this->pencilFactory = $pencilFactory;
         $this->pencilInterface = $pencilInterface;
         $this->paymentTokenManagement = $paymentTokenManagement;
         parent::__construct($context);
@@ -51,11 +57,13 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
     {
         // echo $this->pencilInterface->getPencilType();
 
-         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         // $student = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Student');
         // $pencil = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Pencil');
-        $book = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Book');
-        var_dump($book);
+       // $book = $objectManager->create('\SimplifiedMagento\FirstModule\Model\Book');
+
+        $pencil = $this->pencilFactory->create(array("name"=>"Alain", "school"=>"Montreal High School"));
+        var_dump($pencil);
     }
 
 

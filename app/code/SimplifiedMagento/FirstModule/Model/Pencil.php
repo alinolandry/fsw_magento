@@ -24,15 +24,20 @@ class Pencil implements PencilInterface
      */
     protected $size;
 
+    protected $name;
+
+    protected $school;
     /**
      * Pencil constructor.
      * @param Color $color
      * @param Size $size
      */
-    public function __construct(Color $color, Size $size)
+    public function __construct(Color $color, Size $size, $name = null, $school = null)
     {
         $this->color = $color;
         $this->size = $size;
+        $this->name = $name;
+        $this->school = $school;
     }
 
 
