@@ -10,7 +10,7 @@ use SimplifiedMagento\FirstModule\Api\PencilInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use SimplifiedMagento\FirstModule\Model\PencilFactory;
-
+use Magento\Framework\Event\ManagerInterface;
 
 
 /**
@@ -42,17 +42,21 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
 
     protected $productFactory;
 
+    protected $_eventManager;
+
     public function __construct(Context $context,
                                 ProductFactory $productFactory,
                                 PencilFactory $pencilFactory,
                                 PencilInterface $pencilInterface,
-                                PaymentTokenManagementInterface $paymentTokenManagement
+                                PaymentTokenManagementInterface $paymentTokenManagement,
+                                ManagerInterface $_eventManager
     )
     {
         $this->productFactory = $productFactory;
         $this->pencilFactory = $pencilFactory;
         $this->pencilInterface = $pencilInterface;
         $this->paymentTokenManagement = $paymentTokenManagement;
+        $this->_eventManager = $_eventManager;
         parent::__construct($context);
     }
 
@@ -76,8 +80,10 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
       //  $productName = $product->getIdBySku("Tenis RAY Ban-Version 2");
         // var_dump($productName);
         // echo $productName;
-
-        echo "Main Function "."<br/>";
+        $message = new \Magento\Framework\DataObject(array("greeting" => "Good afternoon"));
+        $this->_eventManager->dispatch("custom_event", ['greeting'=>$message]);
+        echo $message->getGreeting();
+        // echo "Main Function "."<br/>";
     }
 
 

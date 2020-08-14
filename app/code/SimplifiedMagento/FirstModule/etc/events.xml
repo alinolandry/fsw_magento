@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Alain Landry Noutchomwo, Inc. All rights reserved.
+ * Email: alinolandry@gmail.com.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_submit_all_after">
+        <observer name="log_test" instance="SimplifiedMagento\FirstModule\Observer\LogTextAtCheckout" />
+    </event>
+    <event name="custom_event">
+        <observer name="greeting" instance="SimplifiedMagento\FirstModule\Observer\OurObserver" />
+    </event>
+</config>
