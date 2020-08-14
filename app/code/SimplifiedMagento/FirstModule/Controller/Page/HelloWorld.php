@@ -11,6 +11,8 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use SimplifiedMagento\FirstModule\Model\PencilFactory;
 use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\App\Request\Http;
+use SimplifiedMagento\FirstModule\Model\HeavyService;
 
 
 /**
@@ -44,12 +46,18 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
 
     protected $_eventManager;
 
+    protected $http;
+
+    protected $heavyService;
+
     public function __construct(Context $context,
                                 ProductFactory $productFactory,
                                 PencilFactory $pencilFactory,
                                 PencilInterface $pencilInterface,
                                 PaymentTokenManagementInterface $paymentTokenManagement,
-                                ManagerInterface $_eventManager
+                                ManagerInterface $_eventManager,
+                                Http $http,
+                                HeavyService $heavyService
     )
     {
         $this->productFactory = $productFactory;
@@ -57,6 +65,9 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
         $this->pencilInterface = $pencilInterface;
         $this->paymentTokenManagement = $paymentTokenManagement;
         $this->_eventManager = $_eventManager;
+        $this->http = $http;
+        $this->heavyService = $heavyService;
+
         parent::__construct($context);
     }
 
@@ -80,10 +91,19 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
       //  $productName = $product->getIdBySku("Tenis RAY Ban-Version 2");
         // var_dump($productName);
         // echo $productName;
-        $message = new \Magento\Framework\DataObject(array("greeting" => "Good afternoon"));
-        $this->_eventManager->dispatch("custom_event", ['greeting'=>$message]);
-        echo $message->getGreeting();
+
+        // events / Observer
+        // $message = new \Magento\Framework\DataObject(array("greeting" => "Good afternoon"));
+        // $this->_eventManager->dispatch("custom_event", ['greeting'=>$message]);
+        // echo $message->getGreeting();
         // echo "Main Function "."<br/>";
+
+        $id = $this->http->getParam('id', 0);
+        if($id == 1){
+            $this->heavyService->printHeavyServiceMessage();
+        }else{
+            echo "Heavy Service Not used";
+        }
     }
 
 
