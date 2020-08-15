@@ -3,6 +3,7 @@
 
 namespace SimplifiedMagento\RequestFlow\Controller\Page;
 
+use Magento\Backend\Model\View\Result\ForwardFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
@@ -22,16 +23,21 @@ class ResponseType extends Action
 
     protected $raw;
 
+    protected $forwardFactory;
+
     public function __construct(Context $context,
                                 PageFactory $pageFactory,
                                 JsonFactory $jsonFactory,
-                                Raw $raw)
+                                Raw $raw,
+                                ForwardFactory $forwardFactory)
     {
         $this->pageFactory = $pageFactory;
 
         $this->jsonFactory = $jsonFactory;
 
         $this->raw = $raw;
+
+        $this->forwardFactory = $forwardFactory;
         parent::__construct($context);
     }
 
@@ -45,7 +51,10 @@ class ResponseType extends Action
      */
     public function execute()
     {
-        return $this->raw->setContents("Hello world");
+        $result = $this->forwardFactory->create();
+        $result->setModule("noroutefound")->setController("page")->forward("customnoroute");
+        return $result;
+        // return $this->raw->setContents("Hello world");
       //  return $this->jsonFactory->create()->setData(['key' => 'value', 'key 2' => ['item1' => 'better', 'item2' => 'sad']]);
       // return $this->pageFactory->create();
     }
