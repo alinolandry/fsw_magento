@@ -110,6 +110,7 @@ return array (
     'Mastering_SampleModule' => 1,
     'Shopial_Facebook' => 1,
     'SimplifiedMagento_FirstModule' => 1,
+    'SimplifiedMagento_RequestFlow' => 1,
     'Sivaschenko_LuckyOrder' => 1,
   ),
 );
