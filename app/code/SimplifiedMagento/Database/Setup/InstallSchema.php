@@ -38,35 +38,35 @@ class InstallSchema implements InstallSchemaInterface
                     'name',
                      Table::TYPE_TEXT,
                      255,
-                     ['nullable'=> true],
+                     ['nullable'=> false],
                      'NAME OF MEMBER'
                  )
                 ->addColumn(
                      'address',
                      Table::TYPE_TEXT,
                      255,
-                     ['nullable' => true],
+                     ['nullable' => false],
                      'ADDRESS OF MEMBER'
                  )
                 ->addColumn(
                      'status',
                      Table::TYPE_BOOLEAN,
                      10,
-                     ['nullable' => true, 'default' => false],
+                     ['nullable' => false, 'default' => false],
                      'STATUS'
                  )
                 ->addColumn(
                      'created_at',
                      Table::TYPE_TIMESTAMP,
                      null,
-                     ['nullable' => true, 'default' => Table::TIMESTAMP_INIT],
+                     ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
                      'TIME CREADTED'
                  )
                 ->addColumn(
                      'updated_at',
                      Table::TYPE_TIMESTAMP,
                      null,
-                     ['nullable' => true, 'default' => Table::TIMESTAMP_INIT_UPDATE],
+                     ['nullable' => false, 'default' => Table::TIMESTAMP_INIT_UPDATE],
                      'TIME UPDATED'
                  )
                 ->setComment(
