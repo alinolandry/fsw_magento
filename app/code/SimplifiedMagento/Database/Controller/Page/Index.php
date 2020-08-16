@@ -35,18 +35,26 @@ class Index extends Action
     {
        $affiliateMember = $this->affiliateMemberFactory->create();
 
+       $collection = $affiliateMember->getCollection();
+       foreach ($collection as $item)
+       {
+           print_r($item->getData());
+           echo "</br>";
+       }
        // update datas of member who have id 1
-        $member = $affiliateMember->load(1);
-        $member->setAddress("new update address");
-        $member->save();
+        //$member = $affiliateMember->load(1);
+       // $member->setAddress("new update address");
+        // $member->save();
+
 
         // create a new data
         // $affiliateMember->addData(['name' => 'New Boy', 'address' => 'New Boy Address', 'status' => false, 'phone_number' => '2464654654']);
         // $affiliateMember->save();
 
+
         // delete datas of member who have id 5
          // $member = $affiliateMember->load(5);
          // $member->delete();
-          var_dump($member->getData());
+         // var_dump($member->getData());
     }
 }
