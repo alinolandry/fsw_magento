@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Mastering\SampleModule\Setup;
+namespace SimplifiedMagento\Database\Setup;
 
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -21,24 +21,14 @@ class UpgradeSchema implements UpgradeSchemaInterface
     {
         $setup->startSetup();
 
-        if(version_compare($context->getVersion(), '1.0.1', '<')){
+        if(version_compare($context->getVersion(), '0.0.2', '<')){
             $setup->getConnection()->addColumn(
-                $setup->getTable('mastering_sample_item'),
-                'description',
+                $setup->getTable('affiliate_member'),
+                'phone_number',
                 [
                     'type' => Table::TYPE_TEXT,
-                    'nullable' => true,
-                    'comment' => 'Item Description'
-                ]
-            );
-        }
-        if(version_compare($context->getVersion(), '1.0.2', '<')){
-            $setup->getConnection()->addColumn(
-                $setup->getTable('sales_order_grid'),
-                'base_tax_amount',
-                [
-                    'type' => Table::TYPE_DECIMAL,
-                    'comment' => 'Base Tax Amount'
+                    'nullable' => false,
+                    'comment' => 'PHONE NUMBER OF MEMBER'
                 ]
             );
         }
